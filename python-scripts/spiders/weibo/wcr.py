@@ -72,7 +72,7 @@ except Exception as e:
 #exit(-4)
 '''
 max_id_queue = Queue(maxsize=3)
-max_id = '4485793948706354'
+max_id = '4484581057181966'
 while True:
     try:
         time.sleep(1)
