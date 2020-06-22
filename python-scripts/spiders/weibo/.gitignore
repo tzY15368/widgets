@@ -4,4 +4,6 @@
 *.ttc
 *.png
 *.zip
+*.rar
+*.pyc
 cookies.py

@@ -64,7 +64,7 @@ except Exception as e:
 #exit(-4)
 '''
 max_id_queue = Queue(maxsize=3)
-max_id = '4481962490243023'
+max_id = '4517483757018259'
 while True:
     try:
         time.sleep(1)
@@ -87,10 +87,15 @@ while True:
             print(max_id_queue.full())
             if max_id_queue.full():
                 max_id = max_id_queue.get()
+                print('--->sleep:60')
                 time.sleep(60)
                 continue
             else:
-                raise ValueError('failed: ok=0 response')
+                print('--->long sleep:300')
+                time.sleep(300)
+                
+                continue
+                #raise ValueError('failed: ok=0 response')
         comments = data['data']['data']
         print('received {} comments'.format(len(comments)))
         write_to_csv(worker_id,comments)
