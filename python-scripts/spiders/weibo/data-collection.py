@@ -1,6 +1,6 @@
 import redis
 import requests
-import pymysql,random,time,hashlib
+import pymysql,random,time,hashlib,csv
 import Queue
 from datetime import datetime, timedelta
 import json
@@ -22,22 +22,8 @@ init_url = 'https://m.weibo.cn/comments/hotflow?id={}&mid={}&max_id_type={}'
 base_url = 'https://m.weibo.cn/comments/hotflow?id={}&mid={}&max_id={}&max_id_type=1'
 user_url = 'https://m.weibo.cn/api/container/getIndex?\
 containerid=230283{}-_INFO'
-cookies = [
-    '*',
-    '*',
-    '*',
-    '*',
-    '*',
-    '*'
-]
-proxies = [
-    '*',
-    '*',
-    '*',
-    '*',
-    '*',
-    '*'
-]
+cookies = ['*']
+proxies = ['*']
 headers = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
     'Cookie':''
@@ -140,7 +126,7 @@ def parse_info(input_txt):
             location=c41['item_content']
     return [uid,age_parser(reg_time),age_parser(age),location]
 
-    try:
+try:
     r = requests.get(init_url.format(uid,uid,0),headers=get_header(i),verify=False,proxies=get_proxy(i))
     if r.status_code!=200:
         raise ValueError('initialization failed.')
